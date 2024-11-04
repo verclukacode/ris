@@ -1,0 +1,10 @@
+-Opravilo: Poljubna naloga, kot na primer čiščenje stanovanja ali opravljanje domače naloge.
+
+-TO-DO List: Seznam, kjer dokumentiramo opravila. Seznam prikazuje vsa opravila, katera smo vnesli v sistem ter potrditveno polje, katero lahko po končanem opravilu obkljukamo.
+
+-Checkbox: Škatlica, katero ob končanem obkljukamo, pove nam da smo končali s opravilom.
+  
+-Search-bar: Vnosno polje, s katerim brskamo po seznamu opravil za specifična opravila.
+
+-Delete: Ko smo opravila končali ter jih obkljukali, jih lahko iz seznama izbrišemo.
+
