@@ -85,7 +85,7 @@ Frontend je razvit v **ReactJS**
 
 
 ## Avtorja
-    Luka Verč in Jaka Volaj
+    Luka Verč in Jaka Volaj in Klemen Novak
 
 ## Licenca
     To-Do aplikacija še ni licencirana.
