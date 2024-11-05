@@ -1,4 +1,35 @@
-🚼
-Naša vizija je ustvariti preprosto in intuitivno aplikacijo za upravljanje nalog, ki uporabnikom omogoča organiziranost brez nepotrebnih funkcij in zapletenosti.
-Osredotočamo se na osnovne potrebe, saj želimo zagotoviti učinkovito in minimalno orodje za maksimalno produktivnost.
-Z aplikacijo, ki je hitra, jasna in brez motenj, omogočamo, da se uporabniki osredotočijo na pomembno – dokončanje nalog in izboljšanje svoje organizacije na najbolj enostaven način.
+Kratek opis rešitve:
+ToDo je enostavna in uporabniku prijazna aplikacija za učinkovito organizacijo opravil. Namenjena je uporabnikom, ki iščejo minimalističen pristop k upravljanju vsakodnevnih nalog, brez nepotrebnih zapletov. Uporabnik lahko zlahka doda, izbriše ali poišče svoja opravila in si s tem izboljša produktivnost ter nadzor nad svojimi aktivnostmi.
+
+Deležniki:
+
+	•	Končni uporabniki (osebe, ki potrebujejo hitro in enostavno orodje za organizacijo svojih opravil).
+	•	Razvojna ekipa (odgovorna za tehnično izvedbo aplikacije).
+	•	Oblikovalci uporabniške izkušnje (UX/UI dizajnerji, ki skrbijo za prijaznost in preprostost uporabe).
+	•	Vodstvo in sponzorji projekta (zagotavljajo sredstva in usmeritve za razvoj aplikacije).
+
+Soglasje o viziji:
+Vsi deležniki se strinjajo, da je vizija aplikacije ponuditi najosnovnejše funkcionalnosti upravljanja opravil. Namen je zagotoviti stabilno in enostavno orodje, ki se osredotoča le na ključne funkcionalnosti brez dodatnih, nepotrebnih zapletov.
+
+Meje rešitve:
+Aplikacija pokriva le osnovno upravljanje opravil – dodajanje, brisanje in iskanje. Namen je ohraniti funkcionalnosti preproste, intuitivne in dostopne brez večjih prilagoditev.
+
+Kaj vključujemo in česa NE vključimo:
+
+	•	Vključujemo: funkcije za dodajanje novih opravil, brisanje izbranih opravil in hitro iskanje znotraj seznama opravil.
+	•	NE vključujemo: naprednih funkcij, kot so označevanje pomembnosti, določanje rokov, obvestila, sinhronizacija med napravami, integracija z drugimi aplikacijami ali možnost deljenja opravil.
+
+Morebitne omejitve:
+
+	•	Aplikacija ne ponuja sinhronizacije opravil med več napravami.
+	•	Varnost in zasebnost bosta osnovna, brez naprednega šifriranja.
+	•	Uporaba brez potrebne registracije ali prijave (lokalno shranjevanje podatkov na napravi uporabnika).
+
+Ključne funkcionalnosti:
+
+	1.	Dodajanje opravil: Uporabnik lahko enostavno vnese nova opravila.
+	2.	Brisanje opravil: Uporabnik lahko odstrani opravljena ali nepotrebna opravila.
+	3.	Iskanje opravil: Uporabnik lahko hitro najde specifična opravila na podlagi iskanih besed.
+
+Ključne alternative:
+Uporabniki, ki potrebujejo naprednejše funkcije, lahko izberejo bolj kompleksne aplikacije za upravljanje opravil, kot so Microsoft To Do ali Todoist, vendar ti sistemi pogosto vključujejo več funkcij, kot jih potrebuje osnovni uporabnik.
