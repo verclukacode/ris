@@ -177,15 +177,17 @@ function Home() {
                                 }}
                                         onClick={() => toggleTask(task.id, !task.completed)}  // Pass function reference
                                 ></button>
-                                <p style={{
-                                    height: "30px",
-                                    alignContent: "center",
-                                    margin: 0,
-                                    marginLeft: 15,
-                                    color: "white",
-                                    fontSize: "17px",
-                                    fontWeight: "normal"
-                                }}>{task.title}</p>
+                                <a style={{textDecoration: "none"}} href={"http://localhost:3000/edit/" + task.id}>
+                                    <p style={{
+                                        height: "30px",
+                                        alignContent: "center",
+                                        margin: 0,
+                                        marginLeft: 15,
+                                        color: "white",
+                                        fontSize: "17px",
+                                        fontWeight: "normal"
+                                    }}>{task.title}</p>
+                                </a>
                             </div>
                         ))}
                         <button style={{

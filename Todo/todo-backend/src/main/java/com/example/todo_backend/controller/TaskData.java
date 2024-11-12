@@ -14,6 +14,9 @@ public class TaskData {
 
     private boolean completed;
 
+    private String description;
+    private String importance = "low";
+
     public TaskData() {}
 
     public TaskData(String title) {
