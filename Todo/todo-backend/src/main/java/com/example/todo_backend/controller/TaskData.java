@@ -14,7 +14,7 @@ public class TaskData {
 
     private boolean completed;
 
-    private String description;
+    private String description = ":)";
     private String importance = "low";
 
     public TaskData() {}
@@ -22,6 +22,8 @@ public class TaskData {
     public TaskData(String title) {
         this.title = title;
         this.completed = false;
+        this.description = ":)";
+        this.importance = "low";
     }
 
     // Getters and Setters
@@ -49,4 +51,16 @@ public class TaskData {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() { return this.description; }
+
+    public void setImportance(String importance) {
+        this.importance = importance;
+    }
+
+    public String getImportance() { return this.importance; }
 }

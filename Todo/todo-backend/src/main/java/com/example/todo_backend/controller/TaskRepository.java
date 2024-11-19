@@ -11,4 +11,7 @@ import java.util.*;
 public interface TaskRepository extends JpaRepository<TaskData, Long> {
     @Query("SELECT t FROM TaskData t WHERE LOWER(t.title) LIKE LOWER(CONCAT('%', :title, '%'))")
     List<TaskData> findByTitleContaining(@Param("title") String title);
+
+    @Query("SELECT t FROM TaskData t WHERE t.id = :id")
+    List<TaskData> findTaskById(@Param("id") String id);
 }

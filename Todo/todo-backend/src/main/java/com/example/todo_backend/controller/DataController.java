@@ -40,11 +40,20 @@ public class DataController {
         return taskService.getAllToDos();
     }
 
-    @PostMapping("/updateTaskStatus")
+    @GetMapping("/deleteTask/{id}")
+    public String deleteTask(@PathVariable("id") String id) {
+        taskService.deleteToDoById(Long.parseLong(id));
+        return "Cock";
+    }
+
+    @PostMapping("/updateTask")
     public List<TaskData> updateTaskStatus(@RequestBody Map<String, String> body) {
         Long id = Long.parseLong(body.get("id"));
+        String title = body.get("title");
         boolean completed = Boolean.parseBoolean(body.get("completed"));
-        taskService.updateTaskStatus(id, completed);
+        String description = body.get("description");
+        String importance = body.get("importance");
+        taskService.updateTaskStatus(id, completed, title, description, importance);
 
         return taskService.getAllToDos();
     }
@@ -52,5 +61,10 @@ public class DataController {
     @GetMapping("/search/{prompt}")
     public List<TaskData> findTasks(@PathVariable("prompt") String prompt) {
         return taskService.getTasksWithTitleContaining(prompt);
+    }
+
+    @GetMapping("/getTask/{id}")
+    public List<TaskData> getTasksWithID(@PathVariable("id") String id) {
+        return taskService.getTasksWithID(id);
     }
 }

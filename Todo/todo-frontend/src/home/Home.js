@@ -7,14 +7,11 @@ function Home() {
 
     const [tasks, setTasks] = useState([]);  // State to store all tasks
     const [newTaskText, setNewTaskText] = useState('');  // State to store new task text
-    const [error, setError] = useState(null);  // State to track errors
 
     const handleInputChange = (event) => {
         setNewTaskText(event.target.value); // Update state with input field's current value
     };
 
-    const [count, setCount] = useState(5);
-    const numbers = Array.from({ length: count }, (_, index) => index + 1);
 
     const openSearch = () => {
         navigate("/search");
@@ -31,7 +28,7 @@ function Home() {
                 const data = await response.json();  // Parse JSON response
                 setTasks(data);  // Set the tasks in state
             } catch (error) {
-                setError(error.message);  // Set error message if something goes wrong
+                console.log(error.message)
             }
         };
 
@@ -61,20 +58,23 @@ function Home() {
             setTasks(updatedTasks);  // Update the tasks list in state
             setNewTaskText('');  // Clear the input field after adding the task
         } catch (error) {
-            setError(error.message);
+            console.log(error.message)
         }
     };
 
-    const toggleTask = async (id, completed) => {
+    const updateTask = async (id, completed, title, description, importance) => {
 
         try {
-            const response = await fetch('http://localhost:8080/updateTaskStatus', {
+            const response = await fetch('http://localhost:8080/updateTask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     id: id,
+                    title: title,
+                    description: description,
+                    importance: importance,
                     completed: completed
                 })
             });
@@ -86,7 +86,7 @@ function Home() {
             const updatedTasks = await response.json();  // Parse the updated task list
             setTasks(updatedTasks);  // Update the tasks list in state
         } catch (error) {
-            setError(error.message);
+            console.log(error.message)
         }
     };
 
@@ -101,7 +101,7 @@ function Home() {
                 const data = await response.json();  // Parse JSON response
                 setTasks(data);  // Set the tasks in state
             } catch (error) {
-                setError(error.message);  // Set error message if something goes wrong
+                console.log(error.message)
             }
         }
     };
@@ -175,7 +175,7 @@ function Home() {
                                     height: "30px",
                                     borderRadius: "15px"
                                 }}
-                                        onClick={() => toggleTask(task.id, !task.completed)}  // Pass function reference
+                                        onClick={() => updateTask(task.id, !task.completed, task.title, task.description, task.importance)}  // Pass function reference
                                 ></button>
                                 <a style={{textDecoration: "none"}} href={"http://localhost:3000/edit/" + task.id}>
                                     <p style={{
