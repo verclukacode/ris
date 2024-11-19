@@ -67,4 +67,9 @@ public class DataController {
     public List<TaskData> getTasksWithID(@PathVariable("id") String id) {
         return taskService.getTasksWithID(id);
     }
+
+    @GetMapping("/getSortedTasks/{sort}")
+    public List<TaskData> getTasksWithID(@PathVariable("sort") String sort) {
+        return taskService.getAllToDos();
+    }
 }

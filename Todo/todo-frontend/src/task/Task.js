@@ -7,6 +7,10 @@ function Task() {
     const [task, setTask] = useState({});
     const navigate = useNavigate();
 
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [importance, setImportance] = useState("")
+
     const goHome = () => {
         navigate("../");
     };
@@ -52,8 +56,16 @@ function Task() {
     };
 
     const saveTask = async () => {
-        saveTask()
-        goHome()
+        try {
+            const response = await fetch(`http://localhost:8080/getTask/${taskID}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch tasks');
+            }
+            const data = await response.json();
+            setTask(data[0]);
+        } catch (error) {
+            console.error(error.message);
+        }
     };
 
     const loadTask = async () => {
@@ -107,13 +119,13 @@ function Task() {
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
                         <h3 style={{ color: "white" }}>Title</h3>
-                        <input style={inputStyle} type="text" value={task.title || ''} />
+                        <input style={inputStyle} type="text" value={task.title || ''} onChange={(e) => setTitle(e.target.value)} />
 
                         <h3 style={{ color: "white" }}>Description</h3>
-                        <input style={inputStyle} type="text" value={task.description || ''} />
+                        <input style={inputStyle} type="text" value={task.description || ''} onChange={(e) => setDescription(e.target.value)} />
 
                         <h3 style={{ color: "white" }}>Importance</h3>
-                        <input style={inputStyle} type="text" value={task.importance || ''} />
+                        <input style={inputStyle} type="text" value={task.importance || ''} onChange={(e) => setImportance(e.target.value)} />
 
                         <div>
                             <button
