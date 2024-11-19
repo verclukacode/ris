@@ -14,16 +14,16 @@ public class TaskData {
 
     private boolean completed;
 
-    private String description = ":)";
-    private String importance = "low";
+    private String description = "";
+    private String importance = "";
 
     public TaskData() {}
 
     public TaskData(String title) {
         this.title = title;
         this.completed = false;
-        this.description = ":)";
-        this.importance = "low";
+        this.description = "Basics";
+        this.importance = "Low";
     }
 
     // Getters and Setters

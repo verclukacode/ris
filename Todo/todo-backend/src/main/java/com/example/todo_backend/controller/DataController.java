@@ -69,7 +69,7 @@ public class DataController {
     }
 
     @GetMapping("/getSortedTasks/{sort}")
-    public List<TaskData> getTasksWithID(@PathVariable("sort") String sort) {
+    public List<TaskData> getSortedTasks(@PathVariable("sort") String sort) {
         return taskService.getAllToDos();
     }
 }

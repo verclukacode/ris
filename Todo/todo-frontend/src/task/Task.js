@@ -7,9 +7,9 @@ function Task() {
     const [task, setTask] = useState({});
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const [importance, setImportance] = useState("")
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [importance, setImportance] = useState("");
 
     const goHome = () => {
         navigate("../");
@@ -34,8 +34,6 @@ function Task() {
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
             }
-
-            const updatedTasks = await response.json();
         } catch (error) {
             console.log(error.message);
         }
@@ -56,16 +54,8 @@ function Task() {
     };
 
     const saveTask = async () => {
-        try {
-            const response = await fetch(`http://localhost:8080/getTask/${taskID}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch tasks');
-            }
-            const data = await response.json();
-            setTask(data[0]);
-        } catch (error) {
-            console.error(error.message);
-        }
+        updateTask(taskID, task.completed, title, description, importance);
+        window.open("http://localhost:3000", '_self');
     };
 
     const loadTask = async () => {
@@ -75,6 +65,9 @@ function Task() {
                 throw new Error('Failed to fetch tasks');
             }
             const data = await response.json();
+            setTitle(data[0].title);
+            setDescription(data[0].description);
+            setImportance(data[0].importance);
             setTask(data[0]);
         } catch (error) {
             console.error(error.message);
@@ -99,6 +92,11 @@ function Task() {
         marginBottom: "30px"
     };
 
+    const selectStyle = {
+        ...inputStyle,
+        padding: '10px'
+    };
+
     return (
         <div className="Task">
             <div className="centered-container">
@@ -113,19 +111,23 @@ function Task() {
                             }}
                             onClick={goHome}
                         >
-                            Home
+                            Cancel
                         </button>
                         <h1 style={{ paddingLeft: "30px" }}>Edit Task</h1>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
                         <h3 style={{ color: "white" }}>Title</h3>
-                        <input style={inputStyle} type="text" value={task.title || ''} onChange={(e) => setTitle(e.target.value)} />
+                        <input style={inputStyle} type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
-                        <h3 style={{ color: "white" }}>Description</h3>
-                        <input style={inputStyle} type="text" value={task.description || ''} onChange={(e) => setDescription(e.target.value)} />
+                        <h3 style={{ color: "white" }}>Category</h3>
+                        <input style={inputStyle} type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
 
                         <h3 style={{ color: "white" }}>Importance</h3>
-                        <input style={inputStyle} type="text" value={task.importance || ''} onChange={(e) => setImportance(e.target.value)} />
+                        <select style={selectStyle} value={importance} onChange={(e) => setImportance(e.target.value)}>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
 
                         <div>
                             <button
