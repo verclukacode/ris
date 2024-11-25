@@ -59,17 +59,17 @@ public class DataController {
     }
 
     @GetMapping("/search/{prompt}")
-    public List<TaskData> findTasks(@PathVariable("prompt") String prompt) {
-        return taskService.getTasksWithTitleContaining(prompt);
+    public Map<String, List<TaskData>> findTasks(@PathVariable("prompt") String prompt) {
+        Map<String, List<TaskData>> response = new HashMap<>();
+        response.put("title", taskService.getTasksWithTitleContaining(prompt));
+        response.put("description", taskService.getTasksWithDescriptionContaining(prompt));
+        response.put("importance", taskService.getTasksWithImportanceContaining(prompt));
+
+        return response;
     }
 
     @GetMapping("/getTask/{id}")
     public List<TaskData> getTasksWithID(@PathVariable("id") String id) {
         return taskService.getTasksWithID(id);
-    }
-
-    @GetMapping("/getSortedTasks/{sort}")
-    public List<TaskData> getSortedTasks(@PathVariable("sort") String sort) {
-        return taskService.getAllToDos();
     }
 }

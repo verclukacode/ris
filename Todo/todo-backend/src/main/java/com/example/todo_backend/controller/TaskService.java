@@ -53,6 +53,14 @@ public class TaskService {
         return toDoRepository.findByTitleContaining(title);
     }
 
+    public List<TaskData> getTasksWithDescriptionContaining(String description) {
+        return toDoRepository.findByDescriptionContaining(description);
+    }
+
+    public List<TaskData> getTasksWithImportanceContaining(String importance) {
+        return toDoRepository.findByImportanceContaining(importance);
+    }
+
     public List<TaskData> getTasksWithID(String id) {
         return toDoRepository.findTaskById(id);
     }

@@ -12,6 +12,12 @@ public interface TaskRepository extends JpaRepository<TaskData, Long> {
     @Query("SELECT t FROM TaskData t WHERE LOWER(t.title) LIKE LOWER(CONCAT('%', :title, '%'))")
     List<TaskData> findByTitleContaining(@Param("title") String title);
 
+    @Query("SELECT t FROM TaskData t WHERE LOWER(t.description) LIKE LOWER(CONCAT('%', :description, '%'))")
+    List<TaskData> findByDescriptionContaining(@Param("description") String description);
+
+    @Query("SELECT t FROM TaskData t WHERE LOWER(t.importance) LIKE LOWER(CONCAT('%', :importance, '%'))")
+    List<TaskData> findByImportanceContaining(@Param("importance") String importance);
+
     @Query("SELECT t FROM TaskData t WHERE t.id = :id")
     List<TaskData> findTaskById(@Param("id") String id);
 }
