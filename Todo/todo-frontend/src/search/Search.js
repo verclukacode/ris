@@ -13,49 +13,31 @@ function Search() {
 
     const navigate = useNavigate();
 
-    const [tasks, setTasks] = useState([]);
+    const [byTitleTasks, setByTitleTasks] = useState([]);
+    const [byCategortyTasks, setByCategortyTasks] = useState([]);
+    const [byImportanceTasks, setByImportanceTasks] = useState([]);
 
     const goHome = () => {
         navigate("../");
     }
 
+    const [searchResultPompt, setSearchResultPompt] = useState('');
+
     const search = async () => {
+        setSearchResultPompt(searchPompt)
         try {
             const response = await fetch(`http://localhost:8080/search/${searchPompt}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch tasks');
             }
             const data = await response.json();  // Parse JSON response
-            setTasks(data);  // Set the tasks in state
+            setByTitleTasks(data.title);
+            setByCategortyTasks(data.description);
+            setByImportanceTasks(data.importance);
         } catch (error) {
             setError(error.message);  // Set error message if something goes wrong
         }
     }
-
-    const toggleTask = async (id, completed) => {
-
-        try {
-            const response = await fetch('http://localhost:8080/updateTaskStatus', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id: id,
-                    completed: completed
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-
-            const updatedTasks = await response.json();  // Parse the updated task list
-            setTasks(updatedTasks);  // Update the tasks list in state
-        } catch (error) {
-            setError(error.message);
-        }
-    };
 
     return (
         <div className="Search">
@@ -112,7 +94,8 @@ function Search() {
                         flexDirection: "column",
                         marginTop: "30px"
                     }}>
-                        {tasks.map((task) => (
+                        <h3>Title containing "{searchResultPompt}"</h3>
+                        {byTitleTasks.map((task) => (
                             <div style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -127,7 +110,62 @@ function Search() {
                                     height: "30px",
                                     borderRadius: "15px"
                                 }}
-                                        onClick={() => toggleTask(task.id, !task.completed)}  // Pass function reference
+                                ></button>
+                                <p style={{
+                                    height: "30px",
+                                    alignContent: "center",
+                                    margin: 0,
+                                    marginLeft: 15,
+                                    color: "white",
+                                    fontSize: "17px",
+                                    fontWeight: "normal"
+                                }}>{task.title}</p>
+                            </div>
+                        ))}
+                        <h3>Category containing "{searchResultPompt}"</h3>
+                        {byCategortyTasks.map((task) => (
+                            <div style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                paddingBottom: "15px"
+                            }} key={task.id}>
+                                <button style={{
+                                    backgroundColor: task.completed ? "#C8A2D6" : "transparent",  // Change color if task is completed
+                                    borderColor: "#C8A2D6",
+                                    borderWidth: 2,
+                                    borderStyle: "solid",
+                                    width: "30px",
+                                    height: "30px",
+                                    borderRadius: "15px"
+                                }}
+                                ></button>
+                                <p style={{
+                                    height: "30px",
+                                    alignContent: "center",
+                                    margin: 0,
+                                    marginLeft: 15,
+                                    color: "white",
+                                    fontSize: "17px",
+                                    fontWeight: "normal"
+                                }}>{task.title}</p>
+                            </div>
+                        ))}
+                        <h3>Importance containing "{searchResultPompt}"</h3>
+                        {byImportanceTasks.map((task) => (
+                            <div style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                paddingBottom: "15px"
+                            }} key={task.id}>
+                                <button style={{
+                                    backgroundColor: task.completed ? "#C8A2D6" : "transparent",  // Change color if task is completed
+                                    borderColor: "#C8A2D6",
+                                    borderWidth: 2,
+                                    borderStyle: "solid",
+                                    width: "30px",
+                                    height: "30px",
+                                    borderRadius: "15px"
+                                }}
                                 ></button>
                                 <p style={{
                                     height: "30px",
