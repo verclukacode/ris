@@ -85,17 +85,17 @@ Frontend je razvit v **ReactJS**
 
 
 
-**## Implementirali smo nove funkcionalnosti, ki vključujejo:**
+## Implementirali smo nove funkcionalnosti, ki vključujejo:**
 
 Dodajanje stopnje pomembnosti opravilom,
 filtriranje opravil glede na stopnjo pomembnosti,
 dodajanje kratkega opisa opravil.
 
 
-**## Kako nove funkcionalnosti delujejo?**
+## Kako nove funkcionalnosti delujejo?**
 Uporabniki lahko ob ustvarjanju ali urejanju opravila določijo stopnjo pomembnosti (low, medium, high). Opravila je nato mogoče filtrirati po pomembnosti, kar omogoča boljšo organizacijo. Prav tako lahko ob vsakem opravilu dodajo kratek opis, ki zagotavlja dodatne informacije ali kontekst.
 
-**##Kako lahko uporabnik preizkusi nove funkcionalnosti?**
+##Kako lahko uporabnik preizkusi nove funkcionalnosti?**
 Uporabniki lahko dostopajo do novih funkcionalnosti na naslednje načine:
 
 Pri dodajanju novega opravila v aplikacijo je na voljo polje za določitev stopnje pomembnosti in polje za kratek opis.
