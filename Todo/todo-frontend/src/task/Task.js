@@ -54,7 +54,7 @@ function Task() {
     };
 
     const saveTask = async () => {
-        updateTask(taskID, task.completed, title, description, importance);
+        await updateTask(taskID, task.completed, title, description, importance);
         window.open("http://localhost:3000", '_self');
     };
 
@@ -159,5 +159,3 @@ function Task() {
         </div>
     );
 }
-
-export default Task;
