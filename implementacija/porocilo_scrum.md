@@ -1,4 +1,4 @@
-| **Naloga**                                         | **Stolpec**      | **Oseba**   | **Story Points** | **Opombe**                                  |
+| **Naloga**                                         | **Status**      | **Oseba**   | **Story Points** | **Opombe**                                  |
 |----------------------------------------------------|------------------|-------------|------------------|---------------------------------------------|
 | Določiti zahteve za funkcionalnost dodajanja prilog | done            | (vsi)       | 4                | sestanek .                                  |
 | Narediti Canban                                     | To-Do           | jaka        | 2                | sproti posodabljati |
