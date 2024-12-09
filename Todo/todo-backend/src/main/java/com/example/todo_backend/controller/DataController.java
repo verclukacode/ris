@@ -53,7 +53,8 @@ public class DataController {
         boolean completed = Boolean.parseBoolean(body.get("completed"));
         String description = body.get("description");
         String importance = body.get("importance");
-        taskService.updateTaskStatus(id, completed, title, description, importance);
+        String imageBase64 = body.get("imageBase64");
+        taskService.updateTaskStatus(id, completed, title, description, importance, imageBase64);
 
         return taskService.getAllToDos();
     }

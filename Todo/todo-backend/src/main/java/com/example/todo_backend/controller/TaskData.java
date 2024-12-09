@@ -17,6 +17,8 @@ public class TaskData {
     private String description = "";
     private String importance = "";
 
+    private String imageBase64 = "";
+
     public TaskData() {}
 
     public TaskData(String title) {
@@ -24,6 +26,7 @@ public class TaskData {
         this.completed = false;
         this.description = "Basics";
         this.importance = "Low";
+        this.imageBase64 = "";
     }
 
     // Getters and Setters
@@ -56,6 +59,10 @@ public class TaskData {
         this.description = description;
     }
 
+    public void setImageBase64(String string) {
+        this.imageBase64 = string;
+    }
+
     public String getDescription() { return this.description; }
 
     public void setImportance(String importance) {
@@ -63,4 +70,8 @@ public class TaskData {
     }
 
     public String getImportance() { return this.importance; }
+
+    public String getImageBase64() {
+        return this.imageBase64;
+    }
 }
