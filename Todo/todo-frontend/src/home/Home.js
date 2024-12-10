@@ -62,7 +62,7 @@ function Home() {
         }
     };
 
-    const updateTask = async (id, completed, title, description, importance) => {
+    const updateTask = async (id, completed, title, description, importance, imageString) => {
 
         try {
             const response = await fetch('http://localhost:8080/updateTask', {
@@ -75,7 +75,8 @@ function Home() {
                     title: title,
                     description: description,
                     importance: importance,
-                    completed: completed
+                    completed: completed,
+                    imageBase64: imageString
                 })
             });
 
@@ -175,7 +176,7 @@ function Home() {
                                     height: "30px",
                                     borderRadius: "15px"
                                 }}
-                                        onClick={() => updateTask(task.id, !task.completed, task.title, task.description, task.importance)}  // Pass function reference
+                                        onClick={() => updateTask(task.id, !task.completed, task.title, task.description, task.importance, task.imageBase64)}  // Pass function reference
                                 ></button>
                                 <a style={{textDecoration: "none"}} href={"http://localhost:3000/edit/" + task.id}>
                                     <p style={{
