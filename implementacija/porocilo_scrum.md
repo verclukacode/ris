@@ -35,3 +35,8 @@ Klemen je posodobil kodo v komponenti Home.js, pri čemer je posodobil postopek 
 ## Preverjanje če deluje ##
 Na koncu je Klemen pullal vse in preveril če stvar sploh deluje.
 
+## Skupni povzetek ##
+Narejene naloge: 7
+
+Storry points: 27
+
