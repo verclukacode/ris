@@ -10,12 +10,14 @@ function Task() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [importance, setImportance] = useState("");
+    const [imageBase64, setImageBase64] = useState("");
 
     const goHome = () => {
         navigate("../");
     };
 
-    const updateTask = async (id, completed, title, description, importance) => {
+    const updateTask = async (id, completed, title, description, importance, image) => {
+ 
         try {
             const response = await fetch('http://localhost:8080/updateTask', {
                 method: 'POST',
@@ -27,7 +29,8 @@ function Task() {
                     title: title,
                     description: description,
                     importance: importance,
-                    completed: completed
+                    completed: completed,
+                    imageBase64: image
                 })
             });
 
@@ -54,8 +57,8 @@ function Task() {
     };
 
     const saveTask = async () => {
-        await updateTask(taskID, task.completed, title, description, importance);
-        window.open("http://localhost:3000", '_self');
+        await updateTask(taskID, task.completed, title, description, importance, imageBase64);
+        //window.open("http://localhost:3000", '_self');
     };
 
     const loadTask = async () => {
@@ -68,6 +71,7 @@ function Task() {
             setTitle(data[0].title);
             setDescription(data[0].description);
             setImportance(data[0].importance);
+            setImageBase64(data[0].imageBase64);
             setTask(data[0]);
         } catch (error) {
             console.error(error.message);
@@ -75,7 +79,10 @@ function Task() {
     };
 
     useEffect(() => {
-        loadTask();
+        const fetchData = async () => {
+            await loadTask();
+        };
+        fetchData();
     }, []);
 
     const inputStyle = {
@@ -97,6 +104,15 @@ function Task() {
         padding: '10px'
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Create a temporary URL to the file object
+        const objectURL = URL.createObjectURL(file);
+        setImageBase64(objectURL);
+    };
+
     return (
         <div className="Task">
             <div className="centered-container">
@@ -115,20 +131,26 @@ function Task() {
                         </button>
                         <h1 style={{ paddingLeft: "30px" }}>Edit Task</h1>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-                        <h3 style={{ color: "white" }}>Title</h3>
-                        <input style={inputStyle} type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+                        <h3 style={{color: "white"}}>Title</h3>
+                        <input style={inputStyle} type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
 
-                        <h3 style={{ color: "white" }}>Category</h3>
-                        <input style={inputStyle} type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                        <h3 style={{color: "white"}}>Category</h3>
+                        <input style={inputStyle} type="text" value={description}
+                               onChange={(e) => setDescription(e.target.value)}/>
 
-                        <h3 style={{ color: "white" }}>Importance</h3>
+                        <h3 style={{color: "white"}}>Importance</h3>
                         <select style={selectStyle} value={importance} onChange={(e) => setImportance(e.target.value)}>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </select>
-
+                        <img src={imageBase64} alt="No image" style={{height: "200px", width: "auto", objectFit: "contain" }}/>
+                        <input
+                            type="file"
+                            accept=".png, .jpeg, .jpg"
+                            onChange={handleFileChange}
+                        />
                         <div>
                             <button
                                 style={{
@@ -159,4 +181,5 @@ function Task() {
         </div>
     );
 }
+
 export default Task;
