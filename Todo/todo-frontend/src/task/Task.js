@@ -58,7 +58,7 @@ function Task() {
 
     const saveTask = async () => {
         await updateTask(taskID, task.completed, title, description, importance, imageBase64);
-        //window.open("http://localhost:3000", '_self');
+        window.open("http://localhost:3000", '_self');
     };
 
     const loadTask = async () => {
