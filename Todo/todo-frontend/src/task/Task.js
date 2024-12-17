@@ -45,7 +45,10 @@ function Task() {
     const deleteTask = async () => {
         if (window.confirm('Are you sure you want to delete this task?')) {
             try {
-                const response = await fetch(`http://localhost:8080/deleteTask/${task.id}`);
+                const response = await fetch(`http://localhost:8080/deleteTaskGoogle/${task.id}`, {
+                    method: "GET",
+                    credentials: "include"
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch tasks');
                 }

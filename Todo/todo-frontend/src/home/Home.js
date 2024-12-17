@@ -45,12 +45,17 @@ function Home() {
 
     const syncThings = async () => {
         try {
-            const response = await fetch('http://localhost:8080/syncWithGoogle')
-            const res = await response
-            console.log(res)
+            // Call the backend API to sync tasks
+            const response = await fetch("http://localhost:8080/syncTask", {
+                method: "POST",
+                credentials: "include", // Include cookies/session for OAuth
+            });
+
+            // Handle response
+            const result = await response.text(); // Backend returns a plain string
+            console.log(result)
         } catch (error) {
-            console.log("Noups")
-            console.log(error.message)
+            console.error("Error syncing tasks:", error);
         }
     }
 
@@ -147,8 +152,20 @@ function Home() {
                             paddingLeft: "30px"
                         }} onClick={openSearch}>Search
                         </button>
-                        <button onClick={handleLogin}>Login with Google</button>
-                        <button onClick={syncThings}>LSyncGoogle</button>
+                        <button style={{
+                            backgroundColor: "transparent",
+                            borderStyle: "none",
+                            fontSize: "17px",
+                            color: "#C8A2D6",
+                            paddingLeft: "30px"
+                        }} onClick={handleLogin}>Login Google</button>
+                        <button style={{
+                            backgroundColor: "transparent",
+                            borderStyle: "none",
+                            fontSize: "17px",
+                            color: "#C8A2D6",
+                            paddingLeft: "30px"
+                        }} onClick={syncThings}>Sync Google</button>
                     </div>
                     <div style={{
                         width: "100%",

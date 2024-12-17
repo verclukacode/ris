@@ -39,15 +39,19 @@ public class TaskService {
                 .orElseThrow(() -> new RuntimeException("ToDo not found with id " + id));
     }
 
-    public void updateTaskStatus(Long id, boolean completed, String title, String description, String importance, String imageBase64) {
+    public void updateTaskStatus(Long id, boolean completed, String title, String description, String importance, String imageBase64, String calendarEventId) {
         TaskData task = toDoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found with id " + id));  // Retrieve the TaskData or throw an exception
+                .orElseThrow(() -> new RuntimeException("Task not found with id " + id));
+
         task.setTitle(title);
-        task.setCompleted(completed);  // Update the completion status
+        task.setCompleted(completed);
         task.setDescription(description);
         task.setImportance(importance);
         task.setImageBase64(imageBase64);
-        toDoRepository.save(task);     // Save the updated task
+        if (calendarEventId != null) {
+            task.setCalendarEventId(calendarEventId);
+        }
+        toDoRepository.save(task);
     }
 
     public List<TaskData> getTasksWithTitleContaining(String title) {

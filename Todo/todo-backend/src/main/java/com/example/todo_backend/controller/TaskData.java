@@ -19,6 +19,8 @@ public class TaskData {
 
     private String imageBase64 = "";
 
+    private String calendarEventId;
+
     public TaskData() {}
 
     public TaskData(String title) {
@@ -73,5 +75,13 @@ public class TaskData {
 
     public String getImageBase64() {
         return this.imageBase64;
+    }
+
+    public String getCalendarEventId() {
+        return calendarEventId;
+    }
+
+    public void setCalendarEventId(String calendarEventId) {
+        this.calendarEventId = calendarEventId;
     }
 }

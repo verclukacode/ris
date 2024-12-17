@@ -71,6 +71,12 @@
 			<version>v3-rev20241101-2.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client-gson</artifactId>
+			<version>1.45.3</version>
+		</dependency>
+
 		<!-- Spring Boot Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
