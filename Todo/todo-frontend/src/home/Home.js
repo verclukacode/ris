@@ -21,19 +21,38 @@ function Home() {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await fetch('http://localhost:8080/tasks');
+                const response = await fetch("http://localhost:8080/tasks", {
+                    method: "GET",
+                    credentials: "include", // Include session cookies
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
                 if (!response.ok) {
-                    throw new Error('Failed to fetch tasks');
+                    throw new Error("Failed to fetch tasks");
                 }
-                const data = await response.json();  // Parse JSON response
-                setTasks(data);  // Set the tasks in state
+
+                const data = await response.json();
+                setTasks(data); // Update state with tasks
             } catch (error) {
-                console.log(error.message)
+                console.error(error.message);
             }
         };
 
-        fetchTasks();  // Call the function to fetch tasks
+        fetchTasks();
     }, []);
+
+    const syncThings = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/syncWithGoogle')
+            const res = await response
+            console.log(res)
+        } catch (error) {
+            console.log("Noups")
+            console.log(error.message)
+        }
+    }
 
     // Function to handle adding a new task
     const addTask = async () => {
@@ -91,6 +110,10 @@ function Home() {
         }
     };
 
+    const handleLogin = () => {
+        window.location.href = "http://localhost:8080/oauth2/authorization/google";
+    };
+
     const deleteCheckedTasks = async () => {
 
         if (window.confirm('Are you sure you want to delete all completed tasks?')) {
@@ -122,7 +145,10 @@ function Home() {
                             fontSize: "17px",
                             color: "#C8A2D6",
                             paddingLeft: "30px"
-                        }} onClick={openSearch} >Search</button>
+                        }} onClick={openSearch}>Search
+                        </button>
+                        <button onClick={handleLogin}>Login with Google</button>
+                        <button onClick={syncThings}>LSyncGoogle</button>
                     </div>
                     <div style={{
                         width: "100%",
