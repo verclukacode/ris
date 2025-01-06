@@ -21,6 +21,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE epski_rizz;' -uroot -proot    
+      
+
       - name: Build backend
         run: |
           cd Todo/todo-backend
