@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies and build frontend
         run: |
-          cd implementacija/frontend
+          cd Todo/todo-frontend
           npm install
           npm run build
 
