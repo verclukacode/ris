@@ -23,7 +23,7 @@ jobs:
 
       - name: Build backend
         run: |
-          cd Todo/todo-backend
+          cd implementacija/backend
           mvn clean install
 
   build-frontend:
@@ -36,7 +36,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '>=20.0.0'
+          node-version: '16'
 
       - name: Install dependencies and build frontend
         run: |
@@ -47,21 +47,6 @@ jobs:
   test-backend:
     runs-on: ubuntu-latest
     needs: build-backend
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: guju8cvl
-          MYSQL_DATABASE: ris_todo
-          MYSQL_USER: root
-          MYSQL_PASSWORD: guju8cvl
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -72,10 +57,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Start MySQL service
+        run: |
+          sudo service mysql start
+          mysql -e 'CREATE DATABASE ris_todo;'
+
       - name: Wait for MySQL to be ready
         run: |
           for i in {1..60}; do
-            if mysqladmin ping -h mysql --silent; then
+            if mysqladmin ping --silent; then
               echo "MySQL is ready"
               break
             fi
@@ -85,11 +75,11 @@ jobs:
 
       - name: Run backend tests
         env:
-          DB_HOST: mysql
+          DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_NAME: ris_todo
           DB_USER: root
-          DB_PASSWORD: guju8cvl
+          DB_PASSWORD:
         run: |
-          cd Todo/todo-backend
+          cd implementacija/backend
           mvn test
