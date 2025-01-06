@@ -24,7 +24,9 @@ jobs:
       - name: Build backend
         run: |
           cd Todo/todo-backend
-          mvn clean install
+          mvn clean install -X
+        env:
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 
   build-frontend:
     runs-on: ubuntu-latest
@@ -83,6 +85,10 @@ jobs:
             sleep 2
           done
 
+      - name: Check MySQL connectivity
+        run: |
+          docker exec -it mysql mysql -uroot -e 'SELECT 1'
+
       - name: Run backend tests
         env:
           DB_HOST: mysql
@@ -92,4 +98,4 @@ jobs:
           DB_PASSWORD: ""
         run: |
           cd Todo/todo-backend
-          mvn -X test -Dspring.profiles.active=test
+          mvn test -Dspring.profiles.active=test
