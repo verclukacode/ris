@@ -24,7 +24,7 @@ jobs:
       - name: Build backend
         run: |
           cd Todo/todo-backend
-          mvn clean install
+          ls
 
   build-frontend:
     runs-on: ubuntu-latest
