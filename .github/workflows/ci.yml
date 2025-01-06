@@ -24,7 +24,7 @@ jobs:
       - name: Build backend
         run: |
           cd Todo/todo-backend
-          ls
+          mvn clean install
 
   build-frontend:
     runs-on: ubuntu-latest
@@ -44,42 +44,3 @@ jobs:
           npm install
           npm run build
 
-  test-backend:
-    runs-on: ubuntu-latest
-    needs: build-backend
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Start MySQL service
-        run: |
-          sudo service mysql start
-          mysql -e 'CREATE DATABASE ris_todo;'
-
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..60}; do
-            if mysqladmin ping --silent; then
-              echo "MySQL is ready"
-              break
-            fi
-            echo "Waiting for MySQL..."
-            sleep 2
-          done
-
-      - name: Run backend tests
-        env:
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_NAME: ris_todo
-          DB_USER: root
-          DB_PASSWORD:
-        run: |
-          cd Todo/todo-backend
-          ls
