@@ -51,10 +51,10 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: guju8cvl
-          MYSQL_DATABASE: ris_todo
+          MYSQL_ROOT_PASSWORD: ""
+          MYSQL_DATABASE: epski_rizz
           MYSQL_USER: root
-          MYSQL_PASSWORD: guju8cvl
+          MYSQL_PASSWORD: ""
         ports:
           - 3306:3306
         options: >-
@@ -87,9 +87,9 @@ jobs:
         env:
           DB_HOST: mysql
           DB_PORT: 3306
-          DB_NAME: ris_todo
+          DB_NAME: epski_rizz
           DB_USER: root
-          DB_PASSWORD: guju8cvl
+          DB_PASSWORD: ""
         run: |
           cd Todo/todo-backend
-          mvn -X test
+          mvn -X test -Dspring.profiles.active=test
