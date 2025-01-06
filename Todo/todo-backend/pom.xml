@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.2</version> <!-- Use the latest stable version -->
+		<version>3.1.2</version> <!-- Uporabite najnovejšo stabilno različico -->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -31,6 +31,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Spring Boot Starter Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -43,30 +44,37 @@
 			</exclusions>
 		</dependency>
 
+		<!-- MySQL Driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Spring Boot Starter Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Spring Security OAuth2 Client -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+
+		<!-- Spring Security Test (za testiranje varnostnih funkcij) -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- Spring Boot Starter Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<!-- MySQL Driver -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- Spring Boot Starter Test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Spring Boot OAuth2 Client -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 
 		<!-- Google API Client -->
@@ -83,16 +91,11 @@
 			<version>v3-rev20241101-2.0.0</version>
 		</dependency>
 
+		<!-- Google HTTP Client -->
 		<dependency>
 			<groupId>com.google.http-client</groupId>
 			<artifactId>google-http-client-gson</artifactId>
 			<version>1.45.3</version>
-		</dependency>
-
-		<!-- Spring Boot Data JPA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -112,10 +115,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<!-- Main class matches your application entry point -->
-					<mainClass>com.example.todo_backend.ToDoBackendApplication</mainClass>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
