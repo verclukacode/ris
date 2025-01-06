@@ -78,7 +78,7 @@ jobs:
             if mysqladmin ping -h 127.0.0.1 --silent; then
               break
             fi
-            sleep 1
+            sleep 2
           done
 
       - name: Run backend tests
