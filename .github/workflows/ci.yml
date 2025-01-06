@@ -23,7 +23,7 @@ jobs:
 
       - name: Build backend
         run: |
-          cd Todo/backend
+          cd Todo/todo-backend
           mvn clean install
 
   build-frontend:
@@ -89,5 +89,5 @@ jobs:
           DB_USER: test_user
           DB_PASSWORD: test_password
         run: |
-          cd Todo/backend
+          cd Todo/todo-backend
           mvn test
