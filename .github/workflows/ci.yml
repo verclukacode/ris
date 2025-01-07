@@ -25,7 +25,9 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE epski_rizz;' -uroot -proot    
-      
+
+      - name: Clear Maven cache
+        run: rm -rf ~/.m2/repository
 
       - name: Build backend
         run: |
@@ -79,9 +81,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Clear Maven cache
-          run: rm -rf ~/.m2/repository
 
       - name: Wait for MySQL to be ready
         run: |
