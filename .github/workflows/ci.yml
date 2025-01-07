@@ -17,8 +17,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: guju8cvl
           MYSQL_DATABASE: ris_todo
-          MYSQL_USER: root
-          MYSQL_PASSWORD: guju8cvl
         ports:
           - 3306:3306
         options: >-
