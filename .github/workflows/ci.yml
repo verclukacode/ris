@@ -73,8 +73,9 @@ jobs:
 
       - name: Build frontend
         env:
-          CI: false # Prevent ESLint warnings from failing the build
+          CI: false
         run: |
+          cd Todo/todo-frontend
           npm run build
 
   test-backend:
