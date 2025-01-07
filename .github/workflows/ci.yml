@@ -72,6 +72,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Clear Maven cache
+          run: rm -rf ~/.m2/repository
+
       - name: Wait for MySQL to be ready
         run: |
           for i in {1..60}; do
@@ -92,4 +95,4 @@ jobs:
           DB_PASSWORD: guju8cvl
         run: |
           cd Todo/todo-backend
-          mvn -X test
+          mvn test
