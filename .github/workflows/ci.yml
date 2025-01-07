@@ -117,7 +117,7 @@ jobs:
 
       - name: Check MySQL connectivity
         run: |
-          mysql -uroot -pguju8cvl -hmysql -e 'SELECT 1'
+          mysql -uroot -pguju8cvl -h127.0.0.1 -e 'SELECT 1'
 
       - name: Run backend tests
         env:
