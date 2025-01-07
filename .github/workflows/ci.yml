@@ -68,8 +68,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd Todo/todo-frontend
           npm install
-          npm audit fix || true
 
       - name: Build frontend
         env:
