@@ -125,7 +125,7 @@ function Task() {
                             style={{
                                 backgroundColor: "transparent",
                                 borderStyle: "none",
-                                fontSize: "17px",
+                                fontSize: "18px",
                                 color: "#C8A2D6"
                             }}
                             onClick={goHome}
