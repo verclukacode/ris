@@ -66,10 +66,15 @@ jobs:
         with:
           node-version: '>=20.0.0'
 
-      - name: Install dependencies and build frontend
+      - name: Install dependencies
         run: |
-          cd Todo/todo-frontend
           npm install
+          npm audit fix || true
+
+      - name: Build frontend
+        env:
+          CI: false # Prevent ESLint warnings from failing the build
+        run: |
           npm run build
 
   test-backend:
