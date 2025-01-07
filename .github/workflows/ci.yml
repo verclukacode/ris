@@ -11,6 +11,21 @@ on:
 jobs:
   build-backend:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: guju8cvl
+          MYSQL_DATABASE: ris_todo
+          MYSQL_USER: root
+          MYSQL_PASSWORD: guju8cvl
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,17 +36,25 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up MySQL
+      - name: Wait for MySQL to be ready
         run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ris_todo;' -uroot
+          for i in {1..60}; do
+            if mysqladmin ping -h localhost --silent; then
+              echo "MySQL is ready"
+              break
+            fi
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
+      - name: Verify MySQL Connectivity
+        run: |
+          mysql -uroot -pguju8cvl -e "USE ris_todo;"
 
       - name: Build backend
         run: |
           cd Todo/todo-backend
           mvn clean install -X
-        env:
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 
   build-frontend:
     runs-on: ubuntu-latest
