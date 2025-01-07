@@ -24,10 +24,7 @@ jobs:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE epski_rizz;' -uroot -proot    
-
-      - name: Clear Maven cache
-          run: rm -rf ~/.m2/repository
+          mysql -e 'CREATE DATABASE epski_rizz;' -uroot -proot
 
       - name: Build backend
         run: |
